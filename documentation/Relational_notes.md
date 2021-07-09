@@ -75,7 +75,7 @@ DROP TABLE Employees;
   * Relationship becomes a relation itself:
   * `Works(ssn,did)`
   * Also called "_Entity-Relationship_"
-```PostgreSQL
+```SQL
 CREATE TABLE Employee (ssn CHAR(11) NOT NULL,
                             PRIMARY KEY(ssn));
 
@@ -91,7 +91,7 @@ CREATE TABLE Works (ssn CHAR(11) NOT NULL,
 **Review 1→M Relationships:**
 * Suppose that an `Employee` manages `N` `Departments` but ANY `Department` is managed only by at-most 1 person.
 > `Employee(ssn)`, `Department(did, ssn)` where `did` → `primary key, ssn` → `foreign key`
-```Postgre
+```SQL
 CREATE TABLE Employee (ssn CHAR(11) NOT NULL,
                             PRIMARY KEY(ssn));
 CREATE TABLE Department (did INTEGER NOT NULL,
@@ -117,11 +117,11 @@ CREATE TABLE Department (did INTEGER NOT NULL,
         * The key goes to either direction.
 ##### Enforcing referential integrity
 * Suppose you are given the following example. (`Department` gets the `ssn`)
-```Postgre
+```SQL
 ON [DELETE | UPDATE] "of the referred tuple the DBMS should" {CASCADE, SET NULL, RESTRICT=NO ACTION=default, SET DEFAULT} "with the current relation"
 ```
 * `Restrict=No` `Action=default`
-```Postgre
+```SQL
 CREATE TABLE Department (did INTEGER,
                 ssn CHAR(11) NOT NULL,
                       PRIMARY KEY(did),
@@ -142,18 +142,18 @@ What this piece of code means:
 | 3 | 3 |
 
 1) What would happen if we want to delete employee with `ssn=1`:
-```Postgre
+```SQL
 Delete FROM Employee where ssn="1";
 ```
 2) We would obtain the error:
 > System gives "`Illegal Action - Violates Referential Integrity Constraint`"
 3) Then we would have to change the manager `did=1` → `did=2` then try again:
-```Postgre
+```SQL
 UPDATE Department D SET D.ssn=2 WHERE D.ssn=1;
 ```
 ## Other Important PostgreSQL interfaces
 ### `CASCADE`
-```Postgre
+```SQL
 CREATE TABLE Department (did INTEGER,
                     ssn CHAR(11) NOT NULL,
                         PRIMARY KEY(ssnv),
@@ -164,7 +164,7 @@ What this means:
 * `ON DELETE` of the refereed tuple in relation to the `Employee` the DBMS should `CASCADE` the `DELETE`.
 * That means that the `Department` record should be deleted as well.
 ### `SET NULL`
-```Postgre
+```SQL
 CREATE TABLE Department (did INTEGER,
                     ssn CHAR(11) NOT NULL,
                         PRIMARY KEY(ssnv),
@@ -175,7 +175,7 @@ What this means:
 * **ILLEGAL code:** `ssn` cannot be `NULL`.
 * violates Participation Constraint
 ### `SET DEFAULT`
-```Postgre
+```SQL
 CREATE TABLE Department (did INTEGER,
                     ssn CHAR(11) NOT NULL,
                         PRIMARY KEY(ssnv),
@@ -185,7 +185,7 @@ FOREIGN KEY(ssn) REFERENCES Employee(ssn),
 What this means:
 * `ON DELETE` of the refereed tuple in relation `Employee` the DBMS should set `ssn` in `Department` to the default value (`0`).
 #### Weak Entities
-```Postgre
+```SQL
 CREATE TABLE Dependent (dname CHAR(11) NOT NULL,
                         ssn CHAR(11) NOT NULL,
                         age INTEGER,
