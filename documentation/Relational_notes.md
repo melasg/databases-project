@@ -75,7 +75,7 @@ DROP TABLE Employees;
   * Relationship becomes a relation itself:
   * `Works(ssn,did)`
   * Also called "_Entity-Relationship_"
-```Postgre
+```PostgreSQL
 CREATE TABLE Employee (ssn CHAR(11) NOT NULL,
                             PRIMARY KEY(ssn));
 
