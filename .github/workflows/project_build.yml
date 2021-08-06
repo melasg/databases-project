@@ -1,36 +1,103 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Custom CS166 CI (test app)
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
   push:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Run PostgreDB.sh
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          echo "creating DB named... "$USER"_DB"
+          createdb -h localhost -p $PGPORT $USER"_DB"
+          pg_ctl status
+          echo "Copying .csv files...."
+          sleep 1
+          cd {{ $GITHUB_WORKSPACE }}
+          cp /data/*.csv /tmp/$USER/myDB/data/.
+          echo "Initializing tables .. "
+          sleep 1
+          psql -h localhost -p $PGPORT $USER"_DB" < ../sql/create.sql
+      - name: Run startPostgreSQL.sh (start)
+        run: |
+        folder=/tmp/$USER
+        export PGDATA=$folder/myDB/data
+        export PGSOCKETS=$folder/myDB/sockets
+        echo $folder
+        rm -rf $folder
+        mkdir $folder
+        mkdir $folder/myDB
+        mkdir $folder/myDB/data
+        mkdir $folder/myDB/sockets
+        sleep 1
+        cp ../data/*.csv $folder/myDB/data
+        initdb
+        sleep 1 
+        export PGPORT=9998 
+        pg_ctl -ol "-c unix_socket_directories=$PGSOCKETS -pD $PGPORT" $PGDATA $folder/logfile start
+      - name: run compile.sh (JDBC App Start)
+        run: |
+        rm -rf bin/*.class
+        javac -cp ".;lib/postgresql-42.1.4.jar;" src/MechanicShop.java -d bin/
+
+  container-job:
+    runs-on: ubuntu-latest
+    container:
+      image:  node:10.16-jessie
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+        - 5432:5432
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    steps:
+    - uses: actions/checkout@v1
+    - run: npm ci
+      working-directory: ./postgres
+    - run: node client.js
+      working-directory: ./postgres
+      env:
+        # use postgres for the host here because we have specified a container for the job.
+        # If we were running the job on the VM this would be localhost
+        POSTGRES_HOST: postgres
+        POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
+
+  vm-job:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:10.8
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+        - 5432/tcp
+        # needed because the postgres container does not provide a healthcheck
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+    - uses: actions/checkout@v1
+    - run: npm ci
+      working-directory: ./postgres
+    - run: node client.js
+      working-directory: ./postgres
+      env:
+        # use localhost for the host here because we are running the job on the VM.
+        # If we were running the job on in a container this would be postgres
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: ${{ job.services.postgres.ports[5432] }}
