@@ -1,0 +1,69 @@
+name: Postgres Service Example
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+    branches:
+    - main
+  workflow_dispatch:
+
+env:
+  DB_HOST: localhost
+  DB_USERNAME: postgres
+  DB_PASSWORD: postgres
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: node:10.16-jessie
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - name: Check out branch
+        uses: actions/checkout@main
+      - run: npm ci
+        working-directory: ./postgres
+      - run: node client.js
+        working-directory: ./postgres
+        env:
+          POSTGRES_HOST: postgres
+          POSTGRES_PORT: 5432
+  deploy:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: postgres
+        ports:
+          - 5432/tcp
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+    - uses: actions/checkout@v1
+    - run: npm ci
+      working-directory: ./postgres
+    - run: node client.js
+      working-directory: ./postgres
+      env:
+        POSTGRES_HOST: localhost
+        POSTGRES_PORT: 5432
+        
+
+
+# Compile
+# javac -cp ".:postresql.jar" -d . MyFileName.java
+# Run
+# java -cp "code/java/lib/postgresql-42.1.4.jar:." MechanicShop
