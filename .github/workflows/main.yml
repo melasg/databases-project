@@ -1,0 +1,45 @@
+name: Custom CS166 CI (test app)
+
+on:
+  push:
+    branches:
+    - master
+  pull_request:
+    branches:
+    - master
+    - mel*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: harmon758/postgresql-action@v1
+    services:
+      postgres:
+        image: postgres:8.2
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: ci_db_test
+        ports:
+          - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    chrome:
+      image: selenium/standalone-chrome:latest
+      ports:
+        - 1313:1313
+  steps:
+  - uses: actions/checkout@v1
+  - name: Install dependencies
+    run: |
+      npm install && npm install -g yarn
+  - name: Build DB
+    env:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgres
+      POSTGRES_PORT: ${{ jobs.services.postgres.port[5432] }}
+    run: |
+      cp .github/workflows/postgres-config.yml.ci
+      # db create 
