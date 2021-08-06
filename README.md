@@ -1,3 +1,4 @@
 # databases-project
 cs166 work
-[![Postgres Service Example](https://github.com/melasq/databases-project/actions/workflows/postgresql-service-starter.yml/badge.svg)](https://github.com/melasq/databases-project/actions/workflows/postgresql-service-starter.yml)
+Code coverage: [![Code Coverage](https://github.com/melasq/databases-project/actions/workflows/project_build.yml/badge.svg?branch=main)](https://github.com/melasq/databases-project/actions/workflows/project_build.yml)
+Dependabot: to be added
