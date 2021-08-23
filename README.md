@@ -10,7 +10,7 @@ cs166 work
 | PostgreSQL | 11.2 | 11 |
 
 ## Code Directory Outline
-```tree
+```bash
 .
 ├── pom.xml
 └── src
