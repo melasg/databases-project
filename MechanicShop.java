@@ -290,7 +290,7 @@ public class MechanicShop{
 					case 6: ListCustomersWithBillLessThan100(esql); break;
 					case 7: ListCustomersWithMoreThan20Cars(esql); break;
 					case 8: ListCarsBefore1995With50000Milles(esql); break;
-					case 9: ListCarsWithTheMostServices(esql); break;
+					case 9: ListKCarsWithTheMostServices(esql); break;
 					case 10: ListCustomersInDescendingOrderOfTheirTotalBill(esql); break;
 					case 11: keepon = false; break;
 				}
@@ -438,25 +438,98 @@ try{
 	}
 	
 	public static void InsertServiceRequest(MechanicShop esql){//4 //https://stackoverflow.com/questions/33507546/how-to-validate-date-input-format
+		
+		
+		
+        
+		
+		
+		
 		try{
 			
-			int rowCount = esql.executeQuery("SELECT * FROM Service_Request;");
+			
+			String lastname;
+			String customerID = "";
+			String vin = "";
+			System.out.println("Enter the last name:");
+			lastname = in.readLine();
+			String myquery = "SELECT Customer.id, Customer.fname, Customer.lname FROM Customer WHERE Customer.lname ='"+ lastname+ "';";
+			int rowCount = esql.executeQueryAndPrintResult(myquery);
+			System.out.println ("total row(s): " + rowCount);
+			if(rowCount >= 1) {
+				System.out.println ("Please provide the ID of the customer:");
+				customerID = in.readLine();
+				
+			}
+			if (rowCount == 0 ) {
+				System.out.println ("The customer is not in the database. First add the customer.");
+				AddCustomer(esql);
+				customerID = Integer.toString(esql.executeQuery("SELECT * FROM Customer;"));
+			}
+			
+			String myquery_1 = "SELECT * FROM Owns WHERE customer_id ="+ customerID + ";";
+			int rowCount_1 = esql.executeQueryAndPrintResult(myquery_1);
+			System.out.println ("total row(s): " + rowCount_1);
+			
+			if (rowCount_1 == 0) {
+				System.out.println ("The is no car associated with the customer. First add a car.");
+				try{
+					
+					
+					String query = "INSERT INTO Car (vin, make, model, year) VALUES (";
+					
+					String input;
+			        
+					System.out.println("Enter the VIN number:");
+					input = in.readLine();
+					vin = input;
+					input = "'" + input +  "'" ;
+			        query += input;
+			        query += ", ";
+					System.out.println("Enter the make:");
+					input = in.readLine();
+					input = "'" + input +  "'" ;
+			        query += input;
+			        query += ", ";
+					System.out.println("Enter the model:");
+					input = in.readLine();
+					input = "'" + input +  "'" ;
+			        query += input;
+			        query += ", ";
+					System.out.println("Enter the year:");
+					input = in.readLine();
+			        query += input;
+			        query += ")";
+			       
+			       
+			         esql.executeUpdate(query);
+			         System.out.println ("A new car has been inserted.");
+			       }catch(Exception e){
+			         System.err.println (e.getMessage());
+			       }
+				
+			}
+			
+			else {
+			
+			System.out.println ("Enter Car's VIN:");
+			vin = in.readLine();
+			}
+	  
+			rowCount = esql.executeQuery("SELECT * FROM Service_Request;");
 			rowCount++;
 			esql.executeUpdate("ALTER SEQUENCE Service_Request_rid_seq RESTART WITH "+ rowCount +" INCREMENT BY 1;");
 			String query = "INSERT INTO Service_Request (customer_id, car_vin, date, odometer,complain) VALUES (";
 			
-			String input;
+			String input = "";
 			
 
 	        
-			System.out.println("Enter Customer ID:");
-			input = in.readLine();
-	        query += input;
+			
+	        query += customerID;
 	        query += ", ";
-			System.out.println("Enter Car's VIN:");
-			input = in.readLine();
-			input = "'" + input +  "'" ;
-	        query += input;
+			vin = "'" + vin +  "'";
+	        query += vin;
 	        query += ", ";
 			
 					    
@@ -466,7 +539,19 @@ try{
 				input = in.readLine();
 				 try {
 				        
-     			      
+     			        
+					    if(input.length() != 23) {
+				        	System.out.println("The inserted date is not valid or the date format is not correct. Please try again.");
+				        	date = false;
+				        }
+				    	
+				    	
+				    	if(input.length() == 23) {
+				        	
+				        	date = true;
+				        }
+				    	
+				    	if(date) {					 
 				        String myDate = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a")
 					            .format(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a").parse(input));
 				        
@@ -494,6 +579,7 @@ try{
 				        	System.out.println("The inserted date is not valid. Please try again.");
 				        	date = false;
 				        }
+				        }
 		    } catch (ParseException e) {
 		    	System.out.println(input+" is invalid date format, please insert the date in this format: MM/dd/yyyy hh:mm:ss AM/PM");
 		    	date = false;
@@ -501,19 +587,7 @@ try{
 		    
 			}
 		    
-		    
-		    
-		    
-		    
-		    
-			
-			
-			
-			
-			
-			
-			
-			
+		    		
 			
 			input = "'" + input +  "'" ;
 	        query += input;
@@ -545,14 +619,40 @@ try{
 			esql.executeUpdate("ALTER SEQUENCE Closed_Request_wid_seq RESTART WITH "+ rowCount +" INCREMENT BY 1;");
 			String query = "INSERT INTO Closed_Request (rid, mid, date, comment, bill) VALUES (";
 		
-			String input;
+			String input = "";
 	        
+			boolean Service_ID = false;
+			while(!Service_ID) {
 			System.out.println("Enter the Service Request's ID:");
-			input = in.readLine();
+			String serviceRequestID = in.readLine(); 
+			int rowCount_1 = esql.executeQuery("SELECT * FROM Service_Request WHERE Service_Request.rid ="+ serviceRequestID);
+			if(rowCount_1 == 0) {
+				System.out.println ("The service Request's ID does not exist in the database. PLease try again.");
+				Service_ID = false;
+			}
+			else {
+			input = serviceRequestID;
+			Service_ID = true;
+			}
+			}
 	        query += input;
 	        query += ", ";
+	        
+	        
+	        boolean Mechanic_ID = false;
+			while(!Mechanic_ID) {
 			System.out.println("Enter the Mechanic's ID:");
-			input = in.readLine();
+			String MehcanicID = in.readLine(); 
+			int rowCount_1 = esql.executeQuery("SELECT * FROM Mechanic WHERE Mechanic.id ="+ MehcanicID);
+			if(rowCount_1 == 0) {
+				System.out.println ("The mehcanic's ID does not exist in the database. PLease try again.");
+				Mechanic_ID = false;
+			}
+			else {
+			input = MehcanicID;
+			Mechanic_ID = true;
+			}
+			}
 	        query += input;
 	        query += ", ";
 	        
@@ -564,13 +664,24 @@ try{
 					input = in.readLine();
 			    try {
 			        
-			        			      			      
+			    	if(input.length() != 23) {
+			        	System.out.println("The inserted date is not valid or the date format is not correct. Please try again.");
+			        	date = false;
+			        }
+			    	
+			    	
+			    	if(input.length() == 23) {
+			        	
+			        	date = true;
+			        }
+			    	
+			    	if(date) {
 			        String myDate = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a")
 				            .format(new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a").parse(input));
 			        
 			        date = true;
 			        
-			        //System.out.println(input);
+			        //System.out.println(input.length());
 			        
 			        int month = Integer.parseInt(input.substring(0, 2));
 			        int day = Integer.parseInt(input.substring(3, 5));
@@ -579,19 +690,20 @@ try{
 			        int minute = Integer.parseInt(input.substring(15, 17));
 			        int second = Integer.parseInt(input.substring(18, 20));
 			        
-			       /* System.out.println(month);
+			        /*System.out.println(month);
 			        System.out.println(day);
 			        System.out.println(year);
 			        System.out.println(hour);
 			        System.out.println(minute);
-			        System.out.println(second);
-			        */
+			        System.out.println(second);*/
+			        
 			        
 			        if(month > 12 || month <= 0 || day > 31 || day <= 0 || year > 2021 || year < 1900 || hour > 12 || hour < 0 || minute > 60 
 			        		|| minute < 0 || second > 60 || second < 0) {
 			        	System.out.println("The inserted date is not valid. Please try again.");
 			        	date = false;
 			        }
+			    	}
 			      
 			    } catch (ParseException e) {
 			    	System.out.println(input+" is invalid date format, please insert the date in this format: MM/dd/yyyy hh:mm:ss AM/PM");
@@ -600,22 +712,7 @@ try{
 			    
 				}
 				
-				/*
-				if(date) {
-					 SimpleDateFormat sdfrmt = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss a");
-					 java.sql.Date javaDate = (java.sql.Date) sdfrmt.parse(input); 
-				     int month = javaDate.getMonth(); 
-				     int day = javaDate.getDay();
-				     int hour = javaDate.getHours();
-				     int minute= javaDate.getMinutes();
-				     int second = javaDate.getSeconds();
-				     if(month > 12 || month < 1) {
-				    	 System.out.println("Month has to be between 1-12");
-				     }
-				     
-				}
-			
-				*/								
+									
 			
 			input = "'" + input +  "'" ;
 	        query += input;
@@ -675,11 +772,24 @@ try{
 	      }
 	}
 	
-	public static void ListCarsWithTheMostServices(MechanicShop esql){//9
+	public static void ListKCarsWithTheMostServices(MechanicShop esql){//9
 		try{
-	         String query = "SELECT  * FROM "+
+			
+			String k;
+			System.out.println("Enter the k:");
+			k = in.readLine();
+			
+	        String query = "SELECT distinct * FROM (SELECT Car.vin, Car.make, Car.model, Car.year, COUNT(*) AS service_count FROM Service_Request, Car "+
+	        		"WHERE Service_Request.car_vin = Car.vin GROUP BY Car.vin) AS temp_1 "+
+	        		"ORDER BY temp_1.service_count Desc "+
+	        		"fetch first " + k + " rows only;";
+	        		
+	        		
+	        		
+	        		
+	        		/*"SELECT  * FROM "+
 	        		 "(SELECT Car.vin, Car.make, Car.model, Car.year, COUNT(*) AS service_count FROM Service_Request, Car WHERE Service_Request.car_vin = Car.vin GROUP BY Car.vin) AS temp_1 "+
-	        		 "WHERE temp_1.service_count = (SELECT MAX(temp_2.service_count) FROM (SELECT Service_Request.car_vin, COUNT(*) AS service_count FROM Service_Request GROUP BY Service_Request.car_vin) AS temp_2)";
+	        		 "WHERE temp_1.service_count = (SELECT MAX(temp_2.service_count) FROM (SELECT Service_Request.car_vin, COUNT(*) AS service_count FROM Service_Request GROUP BY Service_Request.car_vin) AS temp_2)";*/
 
 	         
 	         int rowCount = esql.executeQueryAndPrintResult(query);
