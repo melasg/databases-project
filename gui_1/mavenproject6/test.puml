@@ -1,0 +1,252 @@
+@startuml
+annotation java.lang.Override
+annotation javafx.fxml.FXML
+class CS166.Team32.MechanicShopGUI.AddCarController
+class CS166.Team32.MechanicShopGUI.AddCustomerController
+class CS166.Team32.MechanicShopGUI.AddMechanicController
+class CS166.Team32.MechanicShopGUI.App
+class CS166.Team32.MechanicShopGUI.CarsData
+class CS166.Team32.MechanicShopGUI.ClientPortalController
+class CS166.Team32.MechanicShopGUI.CloseServiceRequestController
+class CS166.Team32.MechanicShopGUI.ConnectionController
+class CS166.Team32.MechanicShopGUI.CustomerData
+class CS166.Team32.MechanicShopGUI.CustomerQuery1Data
+class CS166.Team32.MechanicShopGUI.CustomerQuery2Data
+class CS166.Team32.MechanicShopGUI.CustomerQuery3Data
+class CS166.Team32.MechanicShopGUI.CustomerQuery4Data
+class CS166.Team32.MechanicShopGUI.CustomerQuery5Data
+class CS166.Team32.MechanicShopGUI.InsertServiceRequestController
+class CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller
+class CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller
+class CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller
+class CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller
+class CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller
+class CS166.Team32.MechanicShopGUI.ResScreen
+class java.io.IOException
+class java.net.URL
+class java.sql.Connection
+class java.sql.PreparedStatement
+class java.sql.ResultSet
+class java.sql.SQLException
+class java.util.ArrayList
+class java.util.Date
+class java.util.List
+class java.util.ResourceBundle
+class javafx.application.Application
+class javafx.application.Platform
+class javafx.collections.FXCollections
+class javafx.collections.ObservableList
+class javafx.event.ActionEvent
+class javafx.fxml.FXMLLoader
+class javafx.scene.Parent
+class javafx.scene.Scene
+class javafx.scene.control.Button
+class javafx.scene.control.Label
+class javafx.scene.control.TableColumn
+class javafx.scene.control.TableRow
+class javafx.scene.control.TableView
+class javafx.scene.control.TextArea
+class javafx.scene.control.TextField
+class javafx.scene.control.cell.PropertyValueFactory
+class javafx.scene.input.MouseButton
+class javafx.stage.Stage
+interface javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.fxml.FXML
+CS166.Team32.MechanicShopGUI.AddCarController ..> java.io.IOException
+CS166.Team32.MechanicShopGUI.AddCarController ..> java.net.URL
+CS166.Team32.MechanicShopGUI.AddCarController ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.AddCarController ..> java.sql.PreparedStatement
+CS166.Team32.MechanicShopGUI.AddCarController ..> java.util.List
+CS166.Team32.MechanicShopGUI.AddCarController ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.application.Platform
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.event.ActionEvent
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.fxml.FXMLLoader
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.scene.Parent
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.scene.Scene
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.scene.control.TextField
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.AddCarController ..> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.fxml.FXML
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> java.io.IOException
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> java.net.URL
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> java.sql.PreparedStatement
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> java.sql.SQLException
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> java.util.List
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.application.Platform
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.fxml.FXMLLoader
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.scene.Parent
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.scene.Scene
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.scene.control.TextField
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.AddCustomerController ..> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.fxml.FXML
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> java.io.IOException
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> java.net.URL
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> java.sql.PreparedStatement
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> java.util.List
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.application.Platform
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.fxml.FXMLLoader
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.scene.Parent
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.scene.Scene
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.scene.control.TextField
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.AddMechanicController ..> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.App ..> java.lang.Override
+CS166.Team32.MechanicShopGUI.App ..> javafx.fxml.FXML
+CS166.Team32.MechanicShopGUI.App ..> java.io.IOException
+CS166.Team32.MechanicShopGUI.App --|> javafx.application.Application
+CS166.Team32.MechanicShopGUI.App ..> javafx.fxml.FXMLLoader
+CS166.Team32.MechanicShopGUI.App ..> javafx.scene.Parent
+CS166.Team32.MechanicShopGUI.App ..> javafx.scene.Scene
+CS166.Team32.MechanicShopGUI.App ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.ClientPortalController ..> javafx.fxml.FXML
+CS166.Team32.MechanicShopGUI.ClientPortalController ..> java.io.IOException
+CS166.Team32.MechanicShopGUI.ClientPortalController ..> java.net.URL
+CS166.Team32.MechanicShopGUI.ClientPortalController ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.ClientPortalController ..> javafx.fxml.FXMLLoader
+CS166.Team32.MechanicShopGUI.ClientPortalController ..> javafx.scene.Parent
+CS166.Team32.MechanicShopGUI.ClientPortalController ..> javafx.scene.Scene
+CS166.Team32.MechanicShopGUI.ClientPortalController ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.ClientPortalController ..> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.fxml.FXML
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> java.io.IOException
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> java.net.URL
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> java.sql.SQLException
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> java.util.Date
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> java.util.List
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.application.Platform
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.fxml.FXMLLoader
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.scene.Parent
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.scene.Scene
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.scene.control.TextArea
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.scene.control.TextField
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.CloseServiceRequestController ..> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.ConnectionController ..> java.util.ArrayList
+CS166.Team32.MechanicShopGUI.ConnectionController ..> java.util.List
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> java.io.IOException
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> java.net.URL
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> java.sql.ResultSet
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> java.sql.SQLException
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> java.util.Date
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> java.util.List
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.collections.FXCollections
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.collections.ObservableList
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.event.ActionEvent
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.fxml.FXMLLoader
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.Parent
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.Scene
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.control.TableColumn
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.control.TableRow
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.control.TableView
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.control.TextArea
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.control.TextField
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.control.cell.PropertyValueFactory
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.scene.input.MouseButton
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.InsertServiceRequestController ..> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> java.lang.Override
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> java.net.URL
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> java.sql.ResultSet
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> java.sql.SQLException
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> javafx.application.Platform
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> javafx.collections.FXCollections
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> javafx.collections.ObservableList
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> javafx.scene.control.TableColumn
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> javafx.scene.control.TableView
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> javafx.scene.control.cell.PropertyValueFactory
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.ListCustomerOp1Controller --|> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> java.lang.Override
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> java.net.URL
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> java.sql.ResultSet
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> java.sql.SQLException
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> javafx.application.Platform
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> javafx.collections.FXCollections
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> javafx.collections.ObservableList
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> javafx.scene.control.TableColumn
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> javafx.scene.control.TableView
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> javafx.scene.control.cell.PropertyValueFactory
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.ListCustomerOp2Controller --|> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> java.lang.Override
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> java.net.URL
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> java.sql.ResultSet
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> java.sql.SQLException
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.application.Platform
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.collections.FXCollections
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.collections.ObservableList
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.event.ActionEvent
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.scene.control.TableColumn
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.scene.control.TableView
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.scene.control.cell.PropertyValueFactory
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.ListCustomerOp3Controller --|> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> java.lang.Override
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> java.net.URL
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> java.sql.ResultSet
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> java.sql.SQLException
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.application.Platform
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.collections.FXCollections
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.collections.ObservableList
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.event.ActionEvent
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.scene.control.TableColumn
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.scene.control.TableView
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.scene.control.cell.PropertyValueFactory
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.ListCustomerOp4Controller --|> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> java.net.URL
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> java.sql.Connection
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> java.sql.ResultSet
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> java.sql.SQLException
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> java.util.ResourceBundle
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.application.Platform
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.collections.FXCollections
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.collections.ObservableList
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.scene.control.TableColumn
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.scene.control.TableView
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.scene.control.TextField
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.scene.control.cell.PropertyValueFactory
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.stage.Stage
+CS166.Team32.MechanicShopGUI.ListCustomerOp5Controller ..> javafx.fxml.Initializable
+CS166.Team32.MechanicShopGUI.ResScreen ..> javafx.event.ActionEvent
+CS166.Team32.MechanicShopGUI.ResScreen ..> javafx.scene.control.Button
+CS166.Team32.MechanicShopGUI.ResScreen ..> javafx.scene.control.Label
+CS166.Team32.MechanicShopGUI.ResScreen ..> javafx.stage.Stage
+@enduml
